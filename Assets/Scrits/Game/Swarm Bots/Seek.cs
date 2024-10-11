@@ -9,17 +9,26 @@ public class Seek : MonoBehaviour
     private Rigidbody2D _rigidbody;
 
     public Transform player;
-    public float seekRnge;
+    public Transform enemy;
+    public float seekRange;
     public float seekSpeed;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        float distanceToPlayer = Vector2.Distance(player.position, enemy.position);
+
+        if (distanceToPlayer < seekRange)
+        { 
+        Vector2 desierdVelocity = player.position - enemy.position;
+        desierdVelocity.Normalize();
+            movement = desierdVelocity;
+        }
+
     }
 }
