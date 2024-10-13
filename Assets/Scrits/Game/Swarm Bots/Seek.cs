@@ -22,13 +22,23 @@ public class Seek : MonoBehaviour
     void Update()
     {
         float distanceToPlayer = Vector2.Distance(player.position, enemy.position);
+       
 
         if (distanceToPlayer < seekRange)
-        { 
-        Vector2 desierdVelocity = player.position - enemy.position;
-        desierdVelocity.Normalize();
+        {
+            Vector2 desierdVelocity = player.position - enemy.position;
+            desierdVelocity.Normalize();
             movement = desierdVelocity;
+
+            if (distanceToPlayer > seekRange)
+            {
+                float slowDown = seekSpeed / 2;
+                movement.x = slowDown;
+                
+            }
         }
+
+        _rigidbody.MovePosition((Vector2)enemy.position + (movement * seekSpeed * Time.fixedDeltaTime));
 
     }
 }
