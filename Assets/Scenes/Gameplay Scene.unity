@@ -605,7 +605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 550187570}
   - component: {fileID: 550187569}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Giant Planet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1110,7 +1110,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   grideWorldSize: {x: 80, y: 80}
-  nodeRadius: 1
+  nodeRadius: 4
 --- !u!4 &1922133579
 Transform:
   m_ObjectHideFlags: 0
