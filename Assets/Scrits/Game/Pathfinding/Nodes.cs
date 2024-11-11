@@ -6,6 +6,7 @@ public class Nodes
 {
     public bool passable;
     public Vector2 worldPosition;
+   
 
     public Nodes(bool _passable, Vector2 _worldPosition)
     {

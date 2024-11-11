@@ -9,7 +9,7 @@ public class GridMaker : MonoBehaviour
     public LayerMask unpassabeMask;
     public Vector2 grideWorldSize;
     public float nodeRadius;
-    Nodes[,] grid;
+   public Nodes[,] grid;
     float nodeDiameter;
     int gridSizeX, gridSizeY;
 
