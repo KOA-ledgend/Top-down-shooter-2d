@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pathfinding : MonoBehaviour
 {
-    Grid grid;
+    GridMaker grid;
 
     void pathfinding(Vector2 startingPosition, Vector2 targetPosition)
     {
@@ -14,7 +14,7 @@ public class Pathfinding : MonoBehaviour
 
     private void Awake()
     {
-        grid = GetComponent<Grid>();
+        grid = GetComponent<GridMaker>();
     }
 
     // Start is called before the first frame update

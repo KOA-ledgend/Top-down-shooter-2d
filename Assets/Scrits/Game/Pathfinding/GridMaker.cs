@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class GridMaker : MonoBehaviour
 {
-    public LayerMask unpassabeMask;
+    public LayerMask unwalkable;
     public Vector2 grideWorldSize;
     public float nodeRadius;
-   public Nodes[,] grid;
+    Nodes[,] grid;
     float nodeDiameter;
     int gridSizeX, gridSizeY;
 
@@ -34,8 +34,12 @@ public class GridMaker : MonoBehaviour
         {
             for (int y = 0; y < gridSizeY; y++)
             {
-                Vector2 worldPoint = worldBottomLeft + Vector2.right * (x * nodeDiameter + nodeRadius) + Vector2.up * (y * nodeDiameter + nodeRadius);
-                bool passable = !(Physics2D.OverlapCircle(worldPoint, nodeRadius, unpassabeMask));
+                Vector3 worldPoint = new Vector3(
+                worldBottomLeft.x + (x * nodeDiameter + nodeRadius),
+                worldBottomLeft.y + (y * nodeDiameter + nodeRadius),
+                 -1 // Z-coordinate to push tiles behind everything
+);
+                bool passable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkable));
 
                 // Debugging each node's position and passable state
                 Debug.Log($"Node at ({x}, {y}) - Position: {worldPoint} - Passable: {passable}");
@@ -59,8 +63,8 @@ public class GridMaker : MonoBehaviour
         {
             foreach (Nodes n in grid)
             {
-                Gizmos.color = (n.passable) ? Color.green : Color.red;
-                Gizmos.DrawWireCube(n.worldPosition, Vector2.one * (nodeDiameter - 0.1f));
+                Gizmos.color = (n.passable) ? Color.white : Color.red;
+                Gizmos.DrawWireCube(new Vector3(n.worldPosition.x, n.worldPosition.y, -1), Vector3.one * (nodeDiameter - 0.1f));
             }
         }
     }
